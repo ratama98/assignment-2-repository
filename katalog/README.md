@@ -4,6 +4,8 @@ katalog page: https://assignment-2-raditya.herokuapp.com/katalog/
 main page: https://assignment-2-raditya.herokuapp.com
 
 ## Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html;
+![Bagan Request Response](bagan_request_response.jpg)
+Input dari user akan diteruskan dalam bentuk request yang akan diproses oleh ```urls.py``` dan diambil sebagai parameter oleh ```views.py```.  ```views.py``` akan memanggil query ke ```models.py``` yang akan mendapatkan data dari database sesuai dengan query yang didapatkan. Hasil dari query yang telah didapatkan diteruskan ke ```views.py``` untuk memilih ```template```, yang kemudian akan ditampilkan kepada user.
 
 ## Jelaskan kenapa menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
 
