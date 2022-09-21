@@ -1,0 +1,112 @@
+[
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 1,
+        "fields": {
+            "watched": false,
+            "title": "Satria Dewa: Gatotkaca",
+            "rating": 1.11,
+            "release_date": "2022-06-09",
+            "review": "Saatnya menggatot or something idk haven't watched it"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 2,
+        "fields": {
+            "watched": true,
+            "title": "Akira",
+            "rating": 4.50,
+            "release_date": "1988-07-16",
+            "review": "One of the best anime movie"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 3,
+        "fields": {
+            "watched": true,
+            "title": "Interstellar",
+            "rating": 4.60,
+            "release_date": "2014-11-06",
+            "review": "Hans Zimmer, man..."
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 4,
+        "fields": {
+            "watched": false,
+            "title": "Morbius",
+            "rating": 1.11,
+            "release_date": "2022-03-30",
+            "review": "It's Morbin' time or something idk haven't watched it"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 5,
+        "fields": {
+            "watched": true,
+            "title": "Fight Club",
+            "rating": 4.20,
+            "release_date": "1999-11-11",
+            "review": "Fascinating story with a mind-blowing ending"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 6,
+        "fields": {
+            "watched": true,
+            "title": "A Silent Voice",
+            "rating": 4.30,
+            "release_date": "2016-09-17",
+            "review": "Heartfelt story about a character trying to find redemption"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 7,
+        "fields": {
+            "watched": true,
+            "title": "Children of the Sea",
+            "rating": 3.90,
+            "release_date": "2019-06-07",
+            "review": "Eyegasm through and through"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 8,
+        "fields": {
+            "watched": false,
+            "title": "Bee Movie",
+            "rating": 1.11,
+            "release_date": "2007-11-02",
+            "review": "Ya like jazz? Or something idk haven't watched it"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 9,
+        "fields": {
+            "watched": true,
+            "title": "Django Unchained",
+            "rating": 4.50,
+            "release_date": "2013-02-13",
+            "review": "Favourite Quentin Tarantino movie"
+        }
+    },
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 10,
+        "fields": {
+            "watched": true,
+            "title": "The Wolf of Wall Street",
+            "rating": 4.60,
+            "release_date": "2014-01-21",
+            "review": "Matthew McConaughey's 5 minutes dialogue is just whoaaa"
+        }
+    }
+]
