@@ -12,7 +12,146 @@ JSON  : https://assignment-2-raditya.herokuapp.com/mywatchlist/json/
 
 
 ## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.
+#### 1. Membuat suatu aplikasi baru bernama mywatchlist di proyek Django Tugas 2 pekan lalu
+Poin ini dilakukan dengan menjalankan command berikut:
 
+```python manage.py startapp mywatchlist```
+
+#### 2. Menambahkan path mywatchlist sehingga pengguna dapat mengakses http://localhost:8000/mywatchlist
+Path ditambahkan di file settings.py project_django sebagai berikut:
+``` 
+INSTALLED_APPS = [
+    ...
+    'mywatchlist',
+]
+```
+
+serta ditambahkan di urls.py sebagai berikut:
+```
+urlpatterns = [
+    ...
+    path('mywatchlist/', include('mywatchlist.urls')),
+]
+```
+
+#### 3. Membuat sebuah model MyWatchList
+Buat class baru di models.py dengan field sebagai berikut:
+```
+class MyWatchList(models.Model):
+    watched = models.BooleanField()
+    title = models.CharField(max_length=255)
+    rating  = models.FloatField(
+        default=1.00,
+        validators = [MaxValueValidator(5.00),MinValueValidator(1.00)]
+    )
+    release_date = models.DateField()
+    review = models.TextField()
+```
+
+#### 4. Menambahkan minimal 10 data untuk objek MyWatchList yang sudah dibuat di atas
+Membuat folder fixtures kemudian membuat file bernama initial_watchlist_data.json dan menambahkan data-data ke dalam file tersebut. Berikut contoh salah satu data yang ditambahkan:
+```
+[
+    {
+        "model": "mywatchlist.mywatchlist",
+        "pk": 1,
+        "fields": {
+            "watched": false,
+            "title": "Satria Dewa: Gatotkaca",
+            "rating": 1.11,
+            "release_date": "2022-06-09",
+            "review": "Saatnya menggatot or something idk haven't watched it"
+        }
+    },
+    ...
+]
+```
+Setelah itu, file template html juga harus bisa memetakan data sesuai dengan list yang sudah dibuat pada initial_watchlist_data.json. Berikut cara menampilkan data-data tersebut di file template html:
+```
+{% for item in list %}
+    <tr>
+        <th>{{item.watched}}</th>
+        <th>{{item.title}}</th>
+        <th>{{item.rating}}</th>
+        <th>{{item.release_date}}</th>
+        <th>{{item.review}}</th>
+    </tr>
+    {% endfor %}
+```
+Terakhir, model harus dimigrasi serta data dari initial_watchlist_data.json harus dimasukkan ke database lokal Django dengan perintah berikut:
+```
+python manage.py makemigrations
+python manage.py migrate
+python manage.py loaddata initial_watchlist_data.json
+```
+
+#### 5. Mengimplementasikan sebuah fitur untuk menyajikan data yang telah dibuat sebelumnya dalam tiga format (HTML, XML, JSON)
+views.py berperan dalam memilih dan mengolah format yang akan digunakan, berikut potongan code yang digunakan dalam implementasinya (nama function sesuai format yang akan ditampilkan):
+```
+def show_html(request):
+    data_mywatchlist = MyWatchList.objects.all()
+    context = {
+        "student_nama": "Raditya Aditama",
+        "student_id": "2106750313",
+        "list": data_mywatchlist ,
+    }
+
+    return render(request, "mywatchlist.html", context)
+
+def show_xml(request):
+    data = MyWatchList.objects.all()
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+    
+def show_json(request):
+    data = MyWatchList.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+```
+
+#### 6. Membuat routing sehingga data di atas dapat diakses melalui URL terpisah
+Routing fungsi-fungsi pada views.py tersebut akan dilakukan di urls.py folder mywatchlist. Berikut routing untuk ketiga format tersebut:
+```
+urlpatterns = [
+    path('html/', show_html, name = "show_html"),
+    path('xml/', show_xml, name='show_xml'),
+    path('json/', show_json, name='show_json'),
+]
+```
+
+#### 7. Melakukan deployment ke Heroku terhadap aplikasi yang sudah kamu buat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.
+Caranya sama dengan pada tugas 2, namun karena repository ini sudah dideploy, maka kita tidak perlu mengulang langkahnya dari nol.
+
+Untuk memastikan fixtures mywatchlist diload, file Procfile perlu diupdate sebagai berikut:
+```
+release: sh -c 'python manage.py migrate && python manage.py loaddata initial_catalog_data.json && python manage.py loaddata initial_watchlist_data.json'
+web: gunicorn project_django.wsgi --log-file -
+```
+Di sini, bagian release ditambahkan ```python manage.py loaddata initial_watchlist_data.json``` untuk load initial_watchlist_data.json ke database local django.
+
+
+#### 8. Menambahkan unit test pada tests.py untuk menguji bahwa tiga URL di poin 6 dapat mengembalikan respon HTTP 200 OK
+Setup terlebih dahulu file tests.py dengan menambahkan class testcase baru sebagai berikut:
+```
+class WatchlistTestCase(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.html = "/mywatchlist/html/"
+        self.xml = "/mywatchlist/xml/"
+        self.json = "/mywatchlist/json/"
+
+    def test_html(self):
+        response = self.client.get(self.html)
+        self.assertEqual(response.status_code, 200)
+
+    def test_xml(self):
+        response = self.client.get(self.xml)
+        self.assertEqual(response.status_code, 200)
+
+    def test_json(self):
+        response = self.client.get(self.json)
+        self.assertEqual(response.status_code, 200)
+```
+
+Setelah itu, untuk menjalankan test hanya perlu menjalankan perintah ```python manage.py test```
 
 ## Screenshot Postman
 #### HTML
