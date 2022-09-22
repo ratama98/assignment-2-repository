@@ -6,10 +6,19 @@ XML   : https://assignment-2-raditya.herokuapp.com/mywatchlist/xml/
 JSON  : https://assignment-2-raditya.herokuapp.com/mywatchlist/json/
 
 ## Jelaskan perbedaan antara JSON, XML, dan HTML!
+* HTML fokus pada cara menampilkan data, sedangkan XML dan JSON fokus pada mendeskripsikan dan menampung data.
+* Data pada HTML dan XML disimpan dalam tag-tag markup, sedangkan data pada JSON disimpan dalam bentuk key dan value.
+* Untuk data interchange, JSON umumnya lebih cepat daripada XML. Hal ini karena JSON, yang merupakan object notation Javascript, bersifat native terhadap javascript. Kemudian, data dari XML juga harus diambil dari tag markupnya terlebih dahulu.
+
+Sumber referensi:
+
+[Difference between html vs xml vs json - Medium.com](https://medium.com/@oazzat19/what-is-the-difference-between-html-vs-xml-vs-json-254864972bbb)
+
+[Difference between JSON and XML](https://www.google.com/amp/s/www.geeksforgeeks.org/difference-between-json-and-xml/amp/)
 
 
 ## Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
-
+Tanpa adanya data delivery, website yang dibuat akan bersifat statis, berarti data yang ditampilkan akan selalu sama kecuali jika diubah langsung dari servernya. Sementara itu, penggunaan data delivery dapat membuat website dinamis yang memungkinkan "komunikasi" antara pengguna dan server. Dengan begitu, tampilan website dapat berubah-ubah secara berkala sesuai dengan update yang dilakukan baik dari sisi pengguna maupun sisi server.
 
 ## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.
 #### 1. Membuat suatu aplikasi baru bernama mywatchlist di proyek Django Tugas 2 pekan lalu
