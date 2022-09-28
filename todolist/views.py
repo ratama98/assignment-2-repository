@@ -1,4 +1,3 @@
-from turtle import title
 from urllib import request
 from django.shortcuts import render
 from todolist.models import Task
