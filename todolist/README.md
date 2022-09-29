@@ -2,13 +2,13 @@
 https://assignment-2-raditya.herokuapp.com/todolist/
 
 ## Apa kegunaan ```{% csrf_token %}``` pada elemen ```<form>```? Apa yang terjadi apabila tidak ada potongan kode tersebut pada elemen ```<form>```?
-Tag tersebut menyediakan proteksi terhadap Cross Site Request Forgery (CSRF). CSRF itu sendiri merupakan tipe serangan yang terjadi ketika website membuat suatu browser mengirim request yang dapat melakukan perubahan yang tidak diinginkan pada server.  
+Tag tersebut merupakan proteksi built-in milik Django terhadap Cross Site Request Forgery (CSRF). CSRF itu sendiri merupakan tipe serangan yang terjadi ketika website membuat suatu browser mengirim request yang dapat melakukan perubahan yang tidak diinginkan pada server.  
 
 ## Apakah kita dapat membuat elemen ```<form>``` secara manual (tanpa menggunakan generator seperti ```{{ form.as_table }}```)? Jelaskan secara gambaran besar bagaimana cara membuat ```<form>``` secara manual.
 Bisa, tag ```<form>``` serta penggunaan tag ```{% csrf_token %}``` dilakukan sama seperti jika mmenggunakan generator. Perbedaannya terdapat pada cara menampilkan isi formnya itu sendiri. Dalam tugas ini, penampilan form diatur dalam tag ```<table>```. Masing-masing elemen yang membutuhkan input akan menggunakan tag ```<input>``` dengan atribut yang diatur sesuai dengan kebutuhan field masing-masing.
 
 ## Jelaskan proses alur data dari submisi yang dilakukan oleh pengguna melalui HTML form, penyimpanan data pada database, hingga munculnya data yang telah disimpan pada template HTML.
-
+User memberi request yang akan mengenerate form html sesuai dengan pathing yang sudah disediakan. kemudian, data akan divalidasi dan diproses di ```views.py```. Setelah divalidasi, data juga akan disimpan pada database Django menggunakan method ```save()```. Setelah data sudah tersimpan di database Django, karena sudah tersimpan sebagai data ```Task```, bisa ditampilkan pada ```todolist.html``` sesuai dengan ketentuan ```show_html``` dan ```todolist.html```.
 
 ## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.
 #### 1. Membuat suatu aplikasi baru bernama todolist di proyek tugas Django yang sudah digunakan sebelumnya.
