@@ -23,6 +23,8 @@ def show_html(request):
     data_todolist = Task.objects.filter(user=request.user)
     
     context = {
+        "student_nama": "Raditya Aditama",
+        "student_id": "2106750313",
         "list": data_todolist ,
     }
 
