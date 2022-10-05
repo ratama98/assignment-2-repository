@@ -38,6 +38,8 @@ def add_task(request):
         if form.is_valid():
             task = form.save(commit=False)
             task.user = request.user
+            task.title = request.POST.get('title')
+            task.description = request.POST.get('description')
             task.save()
         return redirect('todolist:show_html')
 
@@ -49,10 +51,14 @@ def register(request):
 
     if request.method == "POST":
         form = UserCreationForm(request.POST)
+        form.password1 = request.POST.get("password1")
+        form.password2 = request.POST.get("password2")
         if form.is_valid():
             form.save()
             messages.success(request, 'Akun telah berhasil dibuat!')
             return redirect('todolist:login')
+        else:
+            messages.info(request, 'Username atau Password salah!')
     
     context = {'form':form}
     return render(request, 'register.html', context)

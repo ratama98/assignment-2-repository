@@ -1,5 +1,7 @@
-## Link Aplikasi Heroku
+# Link Aplikasi Heroku
 https://assignment-2-raditya.herokuapp.com/todolist/
+
+# TUGAS 4
 
 ## Apa kegunaan ```{% csrf_token %}``` pada elemen ```<form>```? Apa yang terjadi apabila tidak ada potongan kode tersebut pada elemen ```<form>```?
 Tag tersebut merupakan proteksi built-in milik Django terhadap Cross Site Request Forgery (CSRF). CSRF itu sendiri merupakan tipe serangan yang terjadi ketika website membuat suatu browser mengirim request yang dapat melakukan perubahan yang tidak diinginkan pada server.  
@@ -124,3 +126,26 @@ Untuk memastikan todolist terdaftarkan pada website heroku, ditambahkan ```'todo
 
 #### 9. Membuat dua akun pengguna dan tiga dummy data menggunakan model Task pada akun masing-masing di situs web Heroku.
 Buat terlebih dahulu akun dengan cara register, kemudian login melalui masing-masing akun. Pada masing-masing akun, lakukan create task 3 kali untuk membuat 3 dummy data tersebut.
+
+# TUGAS 5
+
+## Apa perbedaan dari Inline, Internal, dan External CSS? Apa saja kelebihan dan kekurangan dari masing-masing style?
+* Inline CSS
+
+* Internal CSS
+
+* External CSS
+
+## Jelaskan tag HTML5 yang kamu ketahui.
+
+
+## Jelaskan tipe-tipe CSS selector yang kamu ketahui.
+
+
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.
+#### 1. Kustomisasi templat untuk halaman login, register, dan create-task semenarik mungkin.
+
+#### 2. Kustomisasi halaman utama todo list menggunakan cards. (Satu card mengandung satu task).
+
+#### 3. Membuat keempat halaman yang dikustomisasi menjadi responsive.
+

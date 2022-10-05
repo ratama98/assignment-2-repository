@@ -2,33 +2,50 @@
 
 {% block meta %}
 <title>Login</title>
+<style>
+    body {
+        background-color:#181818f6 !important;
+    }
+
+    .center {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px;
+        margin: auto;
+    }
+    
+</style>
 {% endblock meta %}
 
 {% block content %}
 
-<div class = "login">
 
+<div class = "login container center text-white mt-3">
     <h1>Login</h1>
-
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
-                    
-            <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
-        </table>
-    </form>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <table class="mt-5">
+                <tr class="row">
+                    <div class="form-floating">
+                        <input type="text" id="floatingInput" placeholder="Username" name="username" class="form-control bg-dark text-white mt-3" style="width:60%;">
+                        <label for="floatingInput" class="form-label text-white" >Username</label>
+                    </div>
+                </tr>    
+                <tr class="row">
+                    <div class="form-floating">
+                        <input type="password" id="floatingInput" name="password" placeholder="Password" class="form-control bg-dark text-white mt-3" style="width:60%;">
+                        <label for="floatingInput" class="form-label text-white">Password</label>
+                    </div>
+                </tr>
+                <tr class="row">
+                    <div class="form-floating">
+                        <input class="btn login_btn btn-dark mt-3" type="submit" value="Login">
+                    </div>
+                </tr>
+            </table>
+        </form>
 
     {% if messages %}
         <ul>
@@ -36,10 +53,11 @@
                 <li>{{ message }}</li>
             {% endfor %}
         </ul>
-    {% endif %}     
-        
-    Belum mempunyai akun? <a href="{% url 'todolist:register' %}">Buat Akun</a>
+    {% endif %}
 
+    Belum mempunyai akun? <a href="{% url 'todolist:register' %}">Buat Akun</a>
 </div>
+
+
 
 {% endblock content %}

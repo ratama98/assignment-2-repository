@@ -2,24 +2,58 @@
 
 {% block meta %}
 <title>Create Task</title>
+<style>
+    body {
+        background-color:#181818f6 !important;
+    }
+</style>
 {% endblock meta %}
 
 {% block content %}
+<nav class="navbar navbar-expand-md navbar-dark bg-dark ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"> TODO </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggleMobileMenu" aria-controls="toggleMobileMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="toggleMobileMenu">
+            <div class="navbar-nav text-center">
+                <button class="btn btn-dark" type="button">
+                    <a href="{% url 'todolist:create-task' %}" class = "text-white text-decoration-none">Create Task</a>
+                </button>
+                <button class="btn btn-dark" type="button">
+                    <a href="{% url 'todolist:logout' %}" class = "text-white text-decoration-none">Logout</a>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
 
-<div class = "create-task">
 
+<div class = "create-task container-md text-white text-left mt-4">
     <h1>Create Task</h1>
-
-    <form method="POST" >  
-        {% csrf_token %}  
-        <table>  
-            {{ form.as_table }}  
-            <tr>  
-                <td></td>
-                <td><input type="submit" name="submit" value="Create"/></td>  
-            </tr>  
-        </table>  
-    </form>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <table class="my-5">  
+                <tr class="row">
+                    <div class="form-floating mb-2">
+                        <input type="text" id="floatingInput" placeholder="Title" name="title" class="form-control bg-dark text-white" style="width:50%;">
+                        <label for="floatingInput" class="form-label text-white">Title</label>
+                    </div>
+                </tr>
+                <tr class="row">
+                    <div class="form-floating mb-2">
+                        <input type="text" id="floatingInput" placeholder="Description" name="description" class="form-control bg-dark text-white" style="height:150px; width:50%;">
+                        <label for="floatingInput" class="form-label text-white">Description</label>
+                    </div>
+                </tr>
+                <tr class="row">
+                    <div class="form-floating mb-2">
+                        <input class="btn login_btn btn-dark" type="submit" value="Create"/>
+                    </div>
+                </tr>
+            </table>
+        </form>
 
     {% if messages %}
         <ul>

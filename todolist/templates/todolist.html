@@ -1,11 +1,70 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Assignment 4 PBP/PBD</h1>
+<style type="text/css">
+    body { 
+        background: #181818f6 !important; 
+    }
 
-<p>User logged in: {{user}}</p>
+    .card:hover{
+        transform: scale(1.10);
+        transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+        cursor: pointer;
+    }
 
-<table>
+    .overflow-information{ 
+        overflow: hidden;
+        display: inline-block;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width:150px; 
+    }
+ </style>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"> TODO </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggleMobileMenu" aria-controls="toggleMobileMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="toggleMobileMenu">
+            <div class="navbar-nav text-center">
+                <button class="btn btn-dark" type="button">
+                    <a href="{% url 'todolist:create-task' %}" class = "text-white text-decoration-none">Create Task</a>
+                </button>
+                <button class="btn btn-dark" type="button">
+                    <a href="{% url 'todolist:logout' %}" class = "text-white text-decoration-none">Logout</a>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <h1 class="text-center text-white my-3">Hello, {{user}}!</h1>
+    <div class="row text-dark">
+        {% for item in list %}
+        <div class="col col-sm-12 col-md-6 col-lg-4 my-1">
+            <div class="card text-center" style="width: 21rem;">
+                <div class="card-header">
+                    <h4 class="card-title"><b>{{item.title}}</b></h5>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-subtitle text-muted">{{item.date}}</p>
+                    <p class="card-text overflow-information">{{item.description}}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}    
+    </div>
+</div>
+
+
+<!-- <h1>Assignment 4 PBP/PBD</h1>
+
+<p>User logged in: {{user}}</p> -->
+
+<!-- <table>
     <tr>
     <th>Date</th>
     <th>Title</th>
@@ -23,6 +82,6 @@
 <br>
 <button><a href="{% url 'todolist:create-task' %}">Create Task</a></button>
 <br>
-<button><a href="{% url 'todolist:logout' %}">Logout</a></button>
+<button><a href="{% url 'todolist:logout' %}">Logout</a></button> -->
 
 {% endblock content %}

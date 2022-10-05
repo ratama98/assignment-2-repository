@@ -2,22 +2,70 @@
 
 {% block meta %}
 <title>Registrasi Akun</title>
+<style>
+    body {
+        background-color:#181818f6 !important;
+    }
+
+    .center {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px;
+        margin: auto;
+    }
+    
+</style>
 {% endblock meta %}
 
 {% block content %}  
 
-<div class = "login">
-    
+<div class = "logout container-md center text-white mt-3">
     <h1>Formulir Registrasi</h1>  
-
         <form method="POST" >  
             {% csrf_token %}  
-            <table>  
-                {{ form.as_table }}  
-                <tr>  
-                    <td></td>
-                    <td><input type="submit" name="submit" value="Daftar"/></td>  
-                </tr>  
+            <table class="mt-5">
+                <tr class="row">
+                    <div class="form-floating mb-2">
+                        <input type="text" id="floatingInput" placeholder="Username" name="username" class="form-control bg-dark text-white" style="width:50%;">
+                        <label for="floatingInput" class="form-label text-white">Username</label>
+                    </div>
+                </tr>
+                <tr class="row">
+                    <div class="form-text mb-2">
+                        <label class="text-white"> Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only. </label>
+                    </div>
+                </tr>
+                <tr class="row">
+                    <div class="form-floating mb-2">
+                        <input type="password" id="floatingInput" placeholder="Password" name="password1" class="form-control bg-dark text-white" style="width:50%;">
+                        <label for="floatingInput" class="form-label text-white">Password</label>
+                    </div>
+                </tr>
+                <tr class="row">
+                    <div class="form-text mb-2">
+                        <label class="text-white"> 
+                            <ul>
+                                <li>Your password cant be too similar to your other personal information.</li>
+                                <li>Your password must contain at least 8 characters.</li>
+                                <li>Your password cant be a commonly used password.</li>
+                                <li>Your password cant be entirely numeric.</li>
+                            </ul>
+                        </label>
+                    </div>
+                </tr>
+                <tr class="row">
+                    <div class="form-floating mb-2">
+                        <input type="password" id="floatingInput" placeholder="Password Confirmation" name="password2" class="form-control bg-dark text-white" style="width:50%;">
+                        <label for="floatingInput" class="form-label text-white">Password Confirmation</label>
+                    </div>
+                </tr>
+                <tr class="row">
+                    <div class="form-floating mb-2">
+                        <input class="btn login_btn btn-dark" type="submit" name="submit" value="Daftar"/>
+                    </div>
+                </tr>
             </table>  
         </form>
 
