@@ -130,22 +130,53 @@ Buat terlebih dahulu akun dengan cara register, kemudian login melalui masing-ma
 # TUGAS 5
 
 ## Apa perbedaan dari Inline, Internal, dan External CSS? Apa saja kelebihan dan kekurangan dari masing-masing style?
-* Inline CSS
+1. Inline CSS
+Tipe CSS yang dapat dituliskan langsung sebagai bagian dari tag HTML dengan memanfaatkan atribut ```style=" "```, dan hanya akan berpengaruh pada tag tersebut.
 
-* Internal CSS
+    * Kelebihan: CSS bisa langsung diaplikasikan ke elemen spesifik, dan tidak memerlukan pembuatan file CSS maupun penulisan CSS di tempat lain.
 
-* External CSS
+    * Kekurangan: Tidak efektif apabila membutuhkan banyak styling karena dapat membuat tag HTML terlihat berantakan.
+
+2. Internal CSS
+Tipe CSS yang dituliskan dalam halaman HTML (pada umumnya bagian head) dengan cara mengapit CSS dalam tag ```<style></style>```.
+
+    * Kelebihan: Bisa diterapkan sekaligus pada beberapa elemen yang serupa selama masih dalam page HTML yang sama. Selain itu, seperti inline CSS, internal CSS juga tidak memerlukan pembuatan file CSS terpisah. 
+
+    * Kekurangan: Tidak efektif apabila banyak styling yang harus diterapkan pada banyak page, karena batasan internal CSS yang memang hanya bisa diterapkan pada satu page HTML.
+
+3. External CSS
+Tipe CSS yang dituliskan dalam file ```.css``` terpisah. Untuk menggunakannya, file tersebut harus diimport terlebih dahulu, misalnya menggunakan tag ```<link>```.
+
+    * Kelebihan: Meringkas styling di HTML karena banyak styling pada file CSS yang dapat langsung digunakan pada banyak page HTML tanpa harus menulis ulang di page tersebut.
+
+    * Kekurangan: Waktu yang dibutuhkan untuk load styling pada file ```.css``` yang diimport dapat berpengaruh pada performa website.
 
 ## Jelaskan tag HTML5 yang kamu ketahui.
+Berikut beberapa tag baru yang hadir pada HTML5:
 
+* ```<nav>```: salah satu tag yang banyak dipakai pada tugas ini, berfungsi dalam mengatur fitur navigasi website.
+* ```<header>```: Berfungsi hampir seperti ```<div>``` namun hanya untuk bagian atas (header) HTML
+* ```<footer>```: Berfungsi hampir seperti ```<div>``` namun hanya untuk bagian bawah (footer) HTML
+* ```<aside>```: Berfungsi hampir seperti ```<div>``` namun hanya untuk bagian samping (sidebar) HTML
+* ```<section>```: Menandakan suatu bagian dari HTML
 
 ## Jelaskan tipe-tipe CSS selector yang kamu ketahui.
 
+* ```*```: Universal selector. Selector ini akan mempengaruhi semua elemen dalam HTML.
+* ```.class```: Class selector. Selector ini akan mempengaruhi elemen yang memiliki atribut class sesuai dengan yang disebutkan dalam ```.class```.
+* ```namaelement```: Element selector. Selector ini akan mempengaruhi semua tag HTML yang sesuai dengan ```namaelement```. 
+* ```#id```: ID selector. Selector ini akan mempengaruhi elemen yang memiliki atribut id sesuai dengan yang disebutkan dalam ```#id```.
+
 
 ## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.
+
+Kostumisasi dilakukan dengan Bootstrap menggunakan link CDN yang diberikan di situs resmi Bootstrap. 
+
 #### 1. Kustomisasi templat untuk halaman login, register, dan create-task semenarik mungkin.
+Perubahan dasar dilakukan dengan mengubah warna background dan warna font. Selain itu, masing-masing form dimodifikasi untuk menggunakan class ```form-floating``` milik Bootstrap dan mengisi floating label masing-masing field menggunakan id ```floatingInput```.
 
 #### 2. Kustomisasi halaman utama todo list menggunakan cards. (Satu card mengandung satu task).
+Implementasi menggunakan class ```card``` yang sudah tersedia dari Bootstrap dan memisahkan judul task ke dalam ```card-header``` dan sisanya ke dalam ```card-body```. Card-card ini kemudian diatur dalam grid-grid untuk membuatnya menjadi responsif. Efek hover ditambahkan dengan menggunakan selector ```classname:hover``` dan menambahkan styling transition pada selector tersebut.
 
 #### 3. Membuat keempat halaman yang dikustomisasi menjadi responsive.
-
+Pada dasarnya, class-class yang disediakan Bootstrap sudah banyak yang responsif mengikuti breakpoint tertentu. Beberapa yang digunakan adalah class ```container``` dan juga sistem grid yang dimiliki Bootstrap. Selain itu, diimport juga responsive viewport meta tag pada bagian head HTML sesuai dengan yang diminta pada dokumentasi resmi Bootstrap.
