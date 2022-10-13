@@ -28,6 +28,11 @@ def show_html(request):
 
     return render(request, "todolist.html", context)
 
+def delete(request, id):
+    task = Task.objects.get(id=id)
+    task.delete()
+    return redirect('todolist:show_html')
+
 def show_json(request):
     data = Task.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")

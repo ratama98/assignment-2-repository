@@ -103,6 +103,9 @@
                     <h6 class="card-subtitle text-muted">${item.fields.date}</p>
                     <p class="card-text overflow-information">${item.fields.description}</p>
                 </div>
+                <div class="card-footer">
+                    <button class="btn btn-danger" onClick="deleteUser(${item.pk})">DELETE</button>
+                </div>
             </div>
         </div>` 
         })
@@ -120,15 +123,16 @@
     return false
   }
   
-//   function deleteTodo() {
-//     fetch('/todolist/delete/json/' + id, {
-//             method: 'DELETE',
-//         }).then(refreshTodo)
-//     return false
-//   }
+  function deleteUser(id) {
+    $.ajax({
+        url: `delete/${id}`,
+        success: function () {
+            refreshTodo()
+        }
+    });
+  }
 
   document.getElementById("add").onclick = addTodo
-//   document.getElementById("delete").onclick = deleteTodo
   refreshTodo()
 </script>
 

@@ -6,6 +6,8 @@ from todolist.views import logout_user
 from todolist.views import add_task
 from todolist.views import show_json
 from todolist.views import add
+from todolist.views import delete
+
 
 # TODO: Implement Routings Here
 
@@ -19,4 +21,5 @@ urlpatterns = [
     path('create-task/', add_task, name='create-task'),
     path('json/', show_json, name='json'),
     path('add/', add, name='add'),
+    path('delete/<int:id>', delete, name='delete'),
 ]
