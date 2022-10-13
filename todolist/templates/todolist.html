@@ -70,7 +70,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-dark" id="add" type="button">Add</button>
-                <button class="btn btn-dark" type="button" data-bs-dismiss="modal">Close</button>
+                <button class="btn btn-dark" id="close" type="button" data-bs-dismiss="modal">Close</button>
             </div>
         </div> 
     </div>
@@ -116,7 +116,7 @@
     fetch("{% url 'todolist:add' %}", {
             method: "POST",
             body: new FormData(document.querySelector('#form'))
-        }).then(refreshTodo)
+        }).then(document.getElementById("close").click()).then(refreshTodo)
     return false
   }
   
