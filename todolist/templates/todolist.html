@@ -33,6 +33,9 @@
                     <a href="{% url 'todolist:create-task' %}" class = "text-white text-decoration-none">Create Task</a>
                 </button>
                 <button class="btn btn-dark" type="button">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalAdd" class = "text-white text-decoration-none">Add Task</a>
+                </button>
+                <button class="btn btn-dark" type="button">
                     <a href="{% url 'todolist:logout' %}" class = "text-white text-decoration-none">Logout</a>
                 </button>
             </div>
@@ -40,48 +43,93 @@
     </div>
 </nav>
 
-<div class="container">
-    <h1 class="text-center text-white my-3">Hello, {{user}}!</h1>
-    <div class="row text-dark">
-        {% for item in list %}
-        <div class="col col-sm-12 col-md-6 col-lg-4 my-1">
-            <div class="card text-center" style="width: 21rem;">
-                <div class="card-header">
-                    <h4 class="card-title"><b>{{item.title}}</b></h5>
-                </div>
-                <div class="card-body">
-                    <h6 class="card-subtitle text-muted">{{item.date}}</p>
-                    <p class="card-text overflow-information">{{item.description}}</p>
-                </div>
+<div class="modal fade" id="modalAdd" tabindex="-1" data-bs-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h4 class="text-white">Add Task</h4>
             </div>
-        </div>
-    {% endfor %}    
+            <div class="modal-body">
+                <form method="POST" id="form">
+                    {% csrf_token %}
+                    <table class="my-5">  
+                        <tr class="row">
+                            <div class="form-floating mb-2">
+                                <input type="text" id="floatingInput" placeholder="Title" name="title" class="form-control bg-dark text-white" style="width:50%;">
+                                <label for="floatingInput" class="form-label text-white">Title</label>
+                            </div>
+                        </tr>
+                        <tr class="row">
+                            <div class="form-floating mb-2">
+                                <input type="text" id="floatingInput" placeholder="Description" name="description" class="form-control bg-dark text-white" style="height:150px; width:50%;">
+                                <label for="floatingInput" class="form-label text-white">Description</label>
+                            </div>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-dark" id="add" type="button">Add</button>
+                <button class="btn btn-dark" type="button" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div> 
     </div>
 </div>
 
+<div class="container" id="cards">
 
-<!-- <h1>Assignment 4 PBP/PBD</h1>
+    
+</div>
 
-<p>User logged in: {{user}}</p> -->
+<script>
+    async function getTodo() {
+      return fetch("{% url 'todolist:json' %}").then((res) => res.json())
+    }
 
-<!-- <table>
-    <tr>
-    <th>Date</th>
-    <th>Title</th>
-    <th>Description</th>
-    </tr>
-    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
-    {% for item in list %}
-    <tr>
-        <th>{{item.date}}</th>
-        <th>{{item.title}}</th>
-        <th>{{item.description}}</th>
-    </tr>
-    {% endfor %}
-</table>
-<br>
-<button><a href="{% url 'todolist:create-task' %}">Create Task</a></button>
-<br>
-<button><a href="{% url 'todolist:logout' %}">Logout</a></button> -->
+    async function refreshTodo() {
+        document.getElementById("cards").innerHTML = ""
+        const todo = await getTodo()
+        let htmlString = `
+            <h1 class="text-center text-white my-3">Hello, {{user}}!</h1>
+            <div class="row text-dark">
+        `
+        todo.forEach((item) => {
+          htmlString += `\n<div class="col col-sm-12 col-md-6 col-lg-4 my-1">
+            <div class="card text-center" style="width: 21rem;">
+                <div class="card-header">
+                    <h4 class="card-title"><b>${item.fields.title}</b></h5>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-subtitle text-muted">${item.fields.date}</p>
+                    <p class="card-text overflow-information">${item.fields.description}</p>
+                </div>
+            </div>
+        </div>` 
+        })
+        htmlString += `
+            </div>
+        `
+        document.getElementById("cards").innerHTML = htmlString
+  }
+
+  function addTodo() {
+    fetch("{% url 'todolist:add' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshTodo)
+    return false
+  }
+  
+//   function deleteTodo() {
+//     fetch('/todolist/delete/json/' + id, {
+//             method: 'DELETE',
+//         }).then(refreshTodo)
+//     return false
+//   }
+
+  document.getElementById("add").onclick = addTodo
+//   document.getElementById("delete").onclick = deleteTodo
+  refreshTodo()
+</script>
 
 {% endblock content %}

@@ -1,7 +1,7 @@
 from urllib import request
 from django.shortcuts import render
 from todolist.models import Task
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 from django.core import serializers
 from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
@@ -23,12 +23,27 @@ def show_html(request):
     data_todolist = Task.objects.filter(user=request.user)
     
     context = {
-        "student_nama": "Raditya Aditama",
-        "student_id": "2106750313",
         "list": data_todolist ,
     }
 
     return render(request, "todolist.html", context)
+
+def show_json(request):
+    data = Task.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def add(request):
+    if request.method == "POST":
+        user = request.user
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+
+        task = Task(user=user, title=title, description=description)
+        task.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
 
 def add_task(request):
     form = NewTask()
